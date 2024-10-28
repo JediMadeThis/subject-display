@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="contents">
+    <div class="progressBar">
+      <div class="bar" id="bar"></div>
+    </div>
+
+    <div class="clockDiv">
+      <p class="clock" id="clock">-- : -- : --</p>
+      <p class="date" id="date">-</p>
+    </div>
+
+    <div class="periodDisplay">
+      <div class="currentPeriod">
+        <h2>Current Subject</h2>
+        <p class="currentSubjectName" id="currentSubjectName">-</p>
+
+        <div class="currentSubjectTeachersContainer">
+          <p class="currentSubjectTeachersLabel">Teachers: </p>
+          <p class="currentSubjectTeachers" id="currentSubjectTeachers">-</p>
+        </div>
+
+      </div>
+      <div class="nextPeriod">
+        <h2>Next Subject</h2>
+      </div>
+    </div>
+
+    <div class="scheduleTable">
+      <h2>Today's Schedule</h2>
+
+      <table>
+        <tbody id="tbody">
+          <tr class="headerRow">
+            <td>#</td>
+            <td>Time</td>
+            <td>Subject Name</td>
+            <td>Teachers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
