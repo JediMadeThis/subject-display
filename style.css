@@ -30,10 +30,9 @@ h2 {
 .bar {
   height: 100%;
   border-radius: 5px;
-  width: 100%;
+  width: 0%;
   background: linear-gradient(to right, #89cff050, #89cff0);
   transition: ease;
-  animation: blinkBar ease 2s infinite;
 }
 
 .periodDisplay {
@@ -70,7 +69,7 @@ h2 {
 }
 
 .scheduleTable {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .scheduleTable h2 {
@@ -107,26 +106,32 @@ td {
   text-align: left;
 }
 
-.currentSubjectTeachersContainer {
+.currentSubjectTeachersContainer,
+.nextSubjectTeachersContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .currentSubjectTeachersLabel,
-.currentSubjectTeachers {
+.currentSubjectTeachers,
+.nextSubjectTeachersLabel,
+.nextSubjectTeachers {
   font-size: 18px;
 }
 
-.currentSubjectTeachersLabel {
+.currentSubjectTeachersLabel,
+.nextSubjectTeachersLabel {
   font-weight: 800;
 }
 
-.currentSubjectTeachers {
+.currentSubjectTeachers,
+.nextSubjectTeachers {
   margin-left: 10px;
 }
 
-.currentSubjectName {
+.currentSubjectName,
+.nextSubjectName {
   text-align: center;
   font-size: 24px;
   font-weight: 700;
@@ -135,6 +140,7 @@ td {
 
 .clockDiv {
   line-height: 10px;
+  margin-top: 20px;
 }
 
 .clock {

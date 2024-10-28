@@ -57,10 +57,7 @@ const subjects = {
     5: { name: 'Maths', teachers: 'T. Jay, ครูสุชาดา' },
     6: { name: 'Buddhism', teachers: 'พระอาจารย์' },
     7: { name: 'English', teachers: 'T. Inspire, ครูกฤตพร' },
-    8: { name: 'EPX', teachers: '' },
-    9: { name: 'Test', teachers: '' },
-    10: { name: 'Test', teachers: '' },
-    11: { name: 'Test', teachers: '' },
+    8: { name: 'EPX Practice', teachers: '' },
   },
   tuesday: {
     A: { name: 'Homeroom', teachers: '' },
@@ -150,10 +147,6 @@ generateTable();
 setInterval(update, 1000);
 
 function update() {
-  bar.style.animation = '';
-  bar.style.width = '0%';
-  bar.style.background = 'linear-gradient(to right, #89cff050, #89cff0)';
-
   updateClock();
   updateBar();
   updateSubjectDisplay();
@@ -315,7 +308,9 @@ function getCurrentPeriodInfo() {
 }
 
 function getCurrentPeriod() {
-  const nowMs = getMs(new Date());
+  const d = new Date();
+  const nowMs = getMs(d);
+  const day = daysOfWeek[d.getDay()];
 
   for (const period in times) {
     const periodMs = getPeriodMs(period);
