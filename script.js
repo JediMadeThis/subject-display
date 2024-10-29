@@ -143,14 +143,39 @@ const currentSubjTeachers = document.getElementById('currentSubjectTeachers');
 const clockE = document.getElementById('clock');
 const dateE = document.getElementById('date');
 
-generateTable();
+const dayA = new Date().getDay;
+
+if (dayA !== 0 || dayA !== 6) {
+  generateTable();
+}
+
+update();
 setInterval(update, 1000);
 
 function update() {
+  const d = new Date();
+  const nowMs = getMs(d);
+  const day = daysOfWeek[d.getDay()];
+
   updateClock();
-  updateBar();
-  updateSubjectDisplay();
-  updateTableStatus();
+
+  const firstSubjectStart = times['A'].start;
+  const firstSubjectStartMs = getMs(
+    new Date(null, null, null, firstSubjectStart[0], firstSubjectStart[1])
+  );
+
+  const lastSubjectEnd =
+    times[numberToName[Object.keys(subjects[day]).length - 1]].end;
+  const lastSubjectEndMs = getMs(
+    new Date(null, null, null, lastSubjectEnd[0], lastSubjectEnd[1])
+  );
+
+  if (nowMs > lastSubjectEndMs) {
+    updateBar();
+    updateTableStatus();
+  } else if (nowMs < firstSubjectStartMs) {
+    return;
+  }
 }
 
 function updateClock() {
@@ -201,12 +226,12 @@ function generateTable() {
   const day = daysOfWeek[dayNo];
 
   for (let i = 0; i < Object.keys(subjects[day]).length; i++) {
-    console.log(i, nameToNumber[getCurrentPeriod().periodName]);
+    const currentSubjectTimes = times[numberToName[i]];
 
-    let sh = String(times[numberToName[i]].start[0]);
-    let sm = String(times[numberToName[i]].start[1]);
-    let eh = String(times[numberToName[i]].end[0]);
-    let em = String(times[numberToName[i]].end[1]);
+    let sh = String(currentSubjectTimes.start[0]);
+    let sm = String(currentSubjectTimes.start[1]);
+    let eh = String(currentSubjectTimes.end[0]);
+    let em = String(currentSubjectTimes.end[1]);
 
     sh = sh.length < 2 ? `0${sh}` : sh;
     sm = sm.length < 2 ? `0${sm}` : sm;
@@ -310,7 +335,6 @@ function getCurrentPeriodInfo() {
 function getCurrentPeriod() {
   const d = new Date();
   const nowMs = getMs(d);
-  const day = daysOfWeek[d.getDay()];
 
   for (const period in times) {
     const periodMs = getPeriodMs(period);
